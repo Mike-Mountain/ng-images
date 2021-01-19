@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mountain-flow-state": {
+      "hosting": {
+        "ng-images": [
+          "mountain-flow-state"
+        ]
+      }
+    }
+  }
+}
