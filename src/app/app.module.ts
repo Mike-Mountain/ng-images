@@ -6,8 +6,8 @@ import {AppComponent} from './app.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
-import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
+import {CoreModule} from './modules/core/core.module';
 
 @NgModule({
   declarations: [
@@ -16,11 +16,12 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot()
+    AngularFireModule.initializeApp(environment.firebase),
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    CoreModule
   ],
-  providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
