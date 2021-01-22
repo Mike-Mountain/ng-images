@@ -13,26 +13,30 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
-    },
-    jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
-    },
-    coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/ng-images'),
-      subdir: '.',
-      reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
-      ]
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+      jasmine: {
+        random: false // don't run tests in random order
+      }
     },
     reporters: ['progress', 'kjhtml'],
+    coverageReporter: {
+      dir: 'build/reports/coverage',
+      reporters: [
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: 'report-lcov' }
+      ],
+      fixWebpackSourcePaths: true
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    browserConsoleLogOptions: {
+      terminal: true,
+      level: ""
+    }
   });
 };

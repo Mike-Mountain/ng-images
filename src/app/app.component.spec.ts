@@ -1,15 +1,21 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppComponent} from './app.component';
+import {LayoutComponent} from './modules/core/components/layout/layout.component';
+import {SidebarComponent} from './modules/core/components/sidebar/sidebar.component';
+import {CoreModule} from './modules/core/core.module';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        CoreModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        SidebarComponent,
+        LayoutComponent,
       ],
     }).compileComponents();
   });
@@ -20,16 +26,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ng-images'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ng-images');
-  });
-
-  it('should render title', () => {
+  it('should display the layout component', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ng-images app is running!');
+    expect(compiled.querySelector('app-layout')).toBeTruthy();
   });
 });
