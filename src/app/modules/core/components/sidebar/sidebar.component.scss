@@ -1,16 +1,23 @@
 @import "src/scss/mixins/util-mixins";
 
+.sidebar-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .details {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: .25rem;
-  margin-bottom: 1.75rem;
+  margin: 1.75rem 0;
+
   @include breakpoint('tablet', 'max') {
-    transform: rotate(90deg) translate(-3rem, 7.5rem);
-    width: 20rem;
-    height: 20rem;
+    writing-mode: vertical-rl;
+    margin-top: 0;
   }
 }
 
@@ -18,7 +25,7 @@
   text-align: center;
 }
 
-.navigation {
+.navigation, .secondary-nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,5 +40,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  i {
+    display: none;
+  }
+
+  @include breakpoint('tablet', 'max') {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    &:not(.bottom) {
+      transform: translate(0, -2rem);
+      width: 3rem;
+      height: 3rem;
+    }
+    span {
+      display: none;
+    }
+    i {
+      display: block;
+    }
+  }
 }
 
